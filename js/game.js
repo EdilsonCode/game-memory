@@ -20,6 +20,14 @@ const createElement = (tag, className) => {
     return element;
 }
 
+const checkEndGame = () => {
+    const disabledCards = document.querySelectorAll('.disabled-card');
+
+    if (disabledCards.length == 20){
+        alert('Parabéns, você ganhou!');
+    }
+}
+
 let firstCard = '';
 let secondCard = '';
 
@@ -29,6 +37,12 @@ const checkCards = () => {
 
     if (firstCharacter === secondCharacter){
 
+        firstCard.firstChild.classList.add('disabled-card');
+        secondCard.firstChild.classList.add('disabled-card');
+        
+        firstCard = '';
+        secondCard = ''; 
+
     } else {
         setTimeout(() => {
 
@@ -37,6 +51,8 @@ const checkCards = () => {
 
             firstCard = '';
             secondCard = ''; 
+
+            checkEndGame();
 
         }, 500);
     }
@@ -59,14 +75,10 @@ const revealCard = ({target}) => {
 }
 
 const createCard = (character) => {
-    //const card = document.createElement('div');
+    
     const card = createElement('div','card');
     const front = createElement('div','face front');
     const back = createElement('div','face back');
-
-    //adicionando o nome das classes
-    //card.className = 'card';
-    //front.className = 'face front';
     
     front.style.backgroundImage = `url('../images/${character}.png')`;
 
@@ -83,7 +95,7 @@ const createCard = (character) => {
 
 const loadGame = () => {
 
-    //Adicionando os elementos/personagens do array espalhados 
+    //Adicionando os elementos/personagens do array espalhados nesse novo array duplicateCharacters
     const duplicateCharacters = [ ...characters, ...characters];
 
     //sorteando as cartas
