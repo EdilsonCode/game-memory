@@ -42,9 +42,9 @@ const checkCards = () => {
 
         firstCard.firstChild.classList.add('disabled-card');
         secondCard.firstChild.classList.add('disabled-card');
-        
+
         firstCard = '';
-        secondCard = ''; 
+        secondCard = '';
 
         checkEndGame();
 
@@ -62,7 +62,8 @@ const checkCards = () => {
 }
 
 const revealCard = ({target}) => {
-    if(target.parentNode.classList.add('reveal-card')){
+
+    if(target.parentNode.className.includes('reveal-card')) {
         return;
     }
 
@@ -120,7 +121,6 @@ const startTimer = () => {
 
 window.onload = () => { 
     spanPlayer.innerHTML = localStorage.getItem('player');
-
     startTimer();
     loadGame();
 }
