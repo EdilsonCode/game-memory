@@ -1,4 +1,5 @@
 const grid = document.querySelector('.grid');
+const spanPlayer = document.querySelector('.player');
 
 //nome das imagens
 const characters = [
@@ -107,4 +108,8 @@ const loadGame = () => {
     })
 }
 
-loadGame();
+window.onload = () => { 
+    spanPlayer.innerHTML = localStorage.getItem('player');
+
+    loadGame();
+}
